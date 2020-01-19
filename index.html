@@ -1,0 +1,29 @@
+<head>
+  <style>
+    p,
+    button {
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Server Fan Speed Control</h1>
+  <form method="POST" enctype="application/x-www-form-urlencoded">
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Manual Fan Control:</td>
+        <td align="center"><input type="checkbox" name="manual-selected" value="manual" CHANGEMECB/></td>
+      </tr>
+      </tr>
+      <tr>
+        <td>Fan Speed [0-100]:</td>
+        <td><input name="manual-fan-speed" value="CHANGEMESPD" /></td>
+      </tr>
+      <tr><td> </td><td><button style="color:blue">Submit</button></td></tr>
+    </table>
+  </form>
+</body>

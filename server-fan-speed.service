@@ -1,0 +1,15 @@
+[Unit]
+Description=Server Fan Speed Controller
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=1s
+User=hetorusnl
+WorkingDirectory=/opt/server-fan-speed/
+ExecStart=/usr/bin/python3 .
+
+[Install]
+WantedBy=multi-user.target
