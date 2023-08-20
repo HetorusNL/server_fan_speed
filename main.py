@@ -1,8 +1,8 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import os
 
-HOST_ADDRESS = ""
-HOST_PORT = 8000
+HOST_ADDRESS = os.environ.get("HOST_ADDRESS", "")
+HOST_PORT = int(os.environ.get("HOST_PORT", 8000))
 
 
 class RequestHandler(BaseHTTPRequestHandler):
