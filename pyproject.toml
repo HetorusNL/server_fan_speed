@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "server-fan-speed"
+version = "0.1.0"
+description = "Set Dell PowerEdge R210 ii fan speed (automatic/manual/speed) using Python3 with web interface"
+authors = ["HetorusNL <tim@hetorus.nl>"]
+license = "MIT License, Copyright (c) 2023 Tim Klein Nijenhuis <tim@hetorus.nl>"
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

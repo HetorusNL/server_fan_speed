@@ -6,19 +6,23 @@ HOST_PORT = 8000
 
 
 class RequestHandler(BaseHTTPRequestHandler):
-    """ Our custom, example request handler """
+    """Our custom, example request handler"""
 
     manual = False
     manual_fan_speed = "0"
-    ipmitool = "ipmitool -H 192.168.1.209 -U HetorusNL"
-    ipmitool += " -P $(cat /opt/server-fan-speed/.password)"
+
+    ip_address = os.environ["SERVER_IP_ADDRESS"]
+    username = os.environ["SERVER_USERNAME"]
+    password = os.environ["SERVER_PASSWORD"]
+    ipmitool = f"ipmitool -H {ip_address} -U {username} -P {password}"
+
     ipmitool_automatic = ipmitool + " raw 0x30 0x30 0x01 0x01"
     ipmitool_manual = ipmitool + " raw 0x30 0x30 0x01 0x00"
     # for ipmitool_fan_speed, hex(...) results in '0xYY' appended to command
     ipmitool_fan_speed = ipmitool + " raw 0x30 0x30 0x02 0xff "
 
     def send_response(self, code, message=None):
-        """ override to customize header """
+        """override to customize header"""
         self.log_request(code)
         self.send_response_only(code)
         self.send_header("Server", "python3 http.server Development Server")
@@ -26,13 +30,13 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self):
-        """ response for a GET request """
+        """response for a GET request"""
         self.send_response(200)
         # load content from index.html file
         self.write_content()
 
     def do_POST(self):
-        """ response for a POST """
+        """response for a POST"""
         content_length = int(self.headers["Content-Length"])
         data = self.rfile.read(content_length).decode("utf-8")
 
@@ -91,7 +95,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 
 def run(server_class=HTTPServer, handler_class=BaseHTTPRequestHandler):
-    """ follows example shown on docs.python.org """
+    """follows example shown on docs.python.org"""
     server_address = (HOST_ADDRESS, HOST_PORT)
     httpd = server_class(server_address, handler_class)
     print("server created, running forever...")

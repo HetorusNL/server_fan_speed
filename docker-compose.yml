@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  python-poetry:
+    image: hetorusnl/python-poetry
+    container_name: python-poetry
+    env_file: config.env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code
+    entrypoint: /code/run-server-fan-speed.sh
