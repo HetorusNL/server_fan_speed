@@ -3,9 +3,8 @@
 # magic options for bash to make scripts safer
 set -Eeuxo pipefail
 
-# make sure to install ipmitool
-apt update
-apt install -y ipmitool
+# run the prepare script to install ipmitool
+./prepare.sh
 
 # run the original entrypoint of the hetorusnl/python-poetry container
 /scripts/run.sh
